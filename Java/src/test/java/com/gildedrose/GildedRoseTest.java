@@ -127,6 +127,30 @@ class GildedRoseTest {
     }
 
     @Test
+    void testNormalQualityIncreasesBeforeSellinExpired() {
+        Item[] items = new Item[]{
+            new Item("Normal", 5, 10),
+            new Item("Normal", 1, 12),
+            new Item("Normal", 0, 14)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals("Normal", app.items[0].name);
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(9, app.items[0].quality);
+
+        assertEquals("Normal", app.items[1].name);
+        assertEquals(0, app.items[1].sellIn);
+        assertEquals(11, app.items[1].quality);
+
+        assertEquals("Normal", app.items[2].name);
+        assertEquals(-1, app.items[2].sellIn);
+        assertEquals(12, app.items[2].quality);
+    }
+
+    @Test
     void foo() {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
