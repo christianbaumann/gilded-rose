@@ -69,12 +69,14 @@ class GildedRose {
     private Item updateQualityNormal(Item item) {
         item.sellIn--;
 
-        if (item.quality != 0) {
-            if (item.sellIn > 0) {
-                item.quality--;
-            } else {
-                item.quality = item.quality - 2;
-            }
+        if (item.quality == 0) {
+            return item;
+        }
+
+        item.quality--;
+
+        if (item.sellIn <= 0) {
+            item.quality--;
         }
 
         return item;
