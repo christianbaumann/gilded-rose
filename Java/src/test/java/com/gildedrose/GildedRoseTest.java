@@ -242,7 +242,51 @@ class GildedRoseTest {
     }
 
     @Test
-    void foo() {
+    void testBackstagePassQualityNotGreater50() {
+        Item[] items = new Item[]{
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 48),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 47),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 50)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(50, app.items[0].quality);
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[1].name);
+        assertEquals(9, app.items[1].sellIn);
+        assertEquals(50, app.items[1].quality);
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[2].name);
+        assertEquals(9, app.items[2].sellIn);
+        assertEquals(50, app.items[2].quality);
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[3].name);
+        assertEquals(4, app.items[3].sellIn);
+        assertEquals(50, app.items[3].quality);
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[4].name);
+        assertEquals(4, app.items[4].sellIn);
+        assertEquals(50, app.items[4].quality);
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[5].name);
+        assertEquals(4, app.items[5].sellIn);
+        assertEquals(50, app.items[5].quality);
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[6].name);
+        assertEquals(4, app.items[6].sellIn);
+        assertEquals(50, app.items[6].quality);
+    }
+
+    @Test
+    void foo() {h
         Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
 
