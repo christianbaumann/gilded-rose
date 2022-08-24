@@ -108,6 +108,25 @@ class GildedRoseTest {
     }
 
     @Test
+    void testSulfurasQualityIncreasesAfterSellinExpired() {
+        Item[] items = new Item[]{
+            new Item("Sulfuras, Hand of Ragnaros", -1, 16),
+            new Item("Sulfuras, Hand of Ragnaros", -5, 18)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(16, app.items[0].quality);
+
+        assertEquals("Sulfuras, Hand of Ragnaros", app.items[1].name);
+        assertEquals(-5, app.items[1].sellIn);
+        assertEquals(18, app.items[1].quality);
+    }
+
+    @Test
     void foo() {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
