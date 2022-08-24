@@ -31,6 +31,24 @@ class GildedRoseTest {
     }
 
     @Test
+    void testAgedBrieQualityIncreasesAfterSellinExpired() {
+        Item[] items = new Item[]{
+            new Item("Aged Brie", -1, 16),
+            new Item("Aged Brie", -5, 18)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals("Aged Brie", app.items[0].name);
+        assertEquals(-2, app.items[0].sellIn);
+        assertEquals(18, app.items[0].quality);
+
+        assertEquals("Aged Brie", app.items[1].name);
+        assertEquals(-6, app.items[1].sellIn);
+        assertEquals(20, app.items[1].quality);
+    }
+    @Test
     void foo() {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
