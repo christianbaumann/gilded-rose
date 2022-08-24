@@ -48,6 +48,41 @@ class GildedRoseTest {
         assertEquals(-6, app.items[1].sellIn);
         assertEquals(20, app.items[1].quality);
     }
+
+    @Test
+    void testAgedBrieQualityNotGreater50() {
+        Item[] items = new Item[]{
+            new Item("Aged Brie", 17, 49),
+            new Item("Aged Brie", 4711, 50),
+            new Item("Aged Brie", -3, 48),
+            new Item("Aged Brie", -666, 49),
+            new Item("Aged Brie", -123, 50)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals("Aged Brie", app.items[0].name);
+        assertEquals(16, app.items[0].sellIn);
+        assertEquals(50, app.items[0].quality);
+
+        assertEquals("Aged Brie", app.items[1].name);
+        assertEquals(4710, app.items[1].sellIn);
+        assertEquals(50, app.items[1].quality);
+
+        assertEquals("Aged Brie", app.items[2].name);
+        assertEquals(-4, app.items[2].sellIn);
+        assertEquals(50, app.items[2].quality);
+
+        assertEquals("Aged Brie", app.items[3].name);
+        assertEquals(-667, app.items[3].sellIn);
+        assertEquals(50, app.items[3].quality);
+
+        assertEquals("Aged Brie", app.items[4].name);
+        assertEquals(-124, app.items[4].sellIn);
+        assertEquals(50, app.items[4].quality);
+    }
+
     @Test
     void foo() {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
