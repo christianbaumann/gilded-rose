@@ -194,6 +194,30 @@ class GildedRoseTest {
     }
 
     @Test
+    void testBackstagePass5Days() {
+        Item[] items = new Item[]{
+            new Item("Backstage passes to a TAFKAL80ETC concert", 6, 6),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 7),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 4, 8)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(5, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[1].name);
+        assertEquals(4, app.items[1].sellIn);
+        assertEquals(10, app.items[1].quality);
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[2].name);
+        assertEquals(3, app.items[2].sellIn);
+        assertEquals(11, app.items[2].quality);
+    }
+
+    @Test
     void foo() {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
