@@ -127,11 +127,23 @@ class GildedRoseTest {
     }
 
     @Test
+    void testNormalQualityDoesNotGoBelow0(){
+        Item[] items = new Item[]{
+            new Item("Normal", 5, 0)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals("Normal", app.items[0].name);
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
     void testNormalQualityIncreasesBeforeSellinExpired() {
         Item[] items = new Item[]{
-            new Item("Normal", 5, 10),
-            new Item("Normal", 1, 12),
-            new Item("Normal", 0, 14)
+            new Item("Normal", 5, 10)
         };
         GildedRose app = new GildedRose(items);
 
@@ -140,21 +152,15 @@ class GildedRoseTest {
         assertEquals("Normal", app.items[0].name);
         assertEquals(4, app.items[0].sellIn);
         assertEquals(9, app.items[0].quality);
-
-        assertEquals("Normal", app.items[1].name);
-        assertEquals(0, app.items[1].sellIn);
-        assertEquals(11, app.items[1].quality);
-
-        assertEquals("Normal", app.items[2].name);
-        assertEquals(-1, app.items[2].sellIn);
-        assertEquals(12, app.items[2].quality);
     }
 
     @Test
     void testNormalQualityIncreasesAfterSellinExpired() {
         Item[] items = new Item[]{
             new Item("Normal", -1, 16),
-            new Item("Normal", -5, 18)
+            new Item("Normal", -5, 18),
+            new Item("Normal", 0, 14),
+            new Item("Normal", 1, 12)
         };
         GildedRose app = new GildedRose(items);
 
@@ -167,6 +173,14 @@ class GildedRoseTest {
         assertEquals("Normal", app.items[1].name);
         assertEquals(-6, app.items[1].sellIn);
         assertEquals(16, app.items[1].quality);
+
+        assertEquals("Normal", app.items[2].name);
+        assertEquals(-1, app.items[2].sellIn);
+        assertEquals(12, app.items[2].quality);
+
+        assertEquals("Normal", app.items[3].name);
+        assertEquals(0, app.items[3].sellIn);
+        assertEquals(10, app.items[3].quality);
     }
 
     @Test
