@@ -84,6 +84,30 @@ class GildedRoseTest {
     }
 
     @Test
+    void testSulfurasQualityIncreasesBeforeSellinExpired() {
+        Item[] items = new Item[]{
+            new Item("Sulfuras, Hand of Ragnaros", 5, 10),
+            new Item("Sulfuras, Hand of Ragnaros", 1, 12),
+            new Item("Sulfuras, Hand of Ragnaros", 0, 14)
+        };
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
+        assertEquals(5, app.items[0].sellIn);
+        assertEquals(10, app.items[0].quality);
+
+        assertEquals("Sulfuras, Hand of Ragnaros", app.items[1].name);
+        assertEquals(1, app.items[1].sellIn);
+        assertEquals(12, app.items[1].quality);
+
+        assertEquals("Sulfuras, Hand of Ragnaros", app.items[2].name);
+        assertEquals(0, app.items[2].sellIn);
+        assertEquals(14, app.items[2].quality);
+    }
+
+    @Test
     void foo() {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
