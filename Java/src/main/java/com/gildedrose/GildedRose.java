@@ -14,6 +14,9 @@ class GildedRose {
                 case "Aged Brie":
                     item = updateQualityAgedBrie(item);
                     break;
+                case "Sulfuras, Hand of Ragnaros":
+                    item = updateQualitySulfuras(item);
+                    break;
                 case "Normal":
                     item = updateQualityNormal(item);
                     break;
@@ -67,6 +70,10 @@ class GildedRose {
                     }
             }
         }
+    }
+
+    private Item updateQualitySulfuras(Item item) {
+        return item;
     }
 
     private Item updateQualityAgedBrie(Item item) {
