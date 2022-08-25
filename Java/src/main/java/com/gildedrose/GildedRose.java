@@ -17,6 +17,9 @@ class GildedRose {
                 case "Sulfuras, Hand of Ragnaros":
                     item = updateQualitySulfuras(item);
                     break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    item = updateQualityBackstagePass(item);
+                    break;
                 case "Normal":
                     item = updateQualityNormal(item);
                     break;
@@ -72,6 +75,40 @@ class GildedRose {
         }
     }
 
+    private Item updateQualityBackstagePass(Item item) {
+        item.sellIn--;
+
+        if (item.quality >= 50) {
+            return item;
+        }
+
+        if (item.sellIn < 0) {
+            item.quality = 0;
+            return item;
+        }
+
+        item.quality++;
+        if (item.quality >= 50) {
+            return item;
+        }
+
+        if (item.sellIn < 10) {
+            item.quality++;
+        }
+        if (item.quality >= 50) {
+            return item;
+        }
+
+        if (item.sellIn < 5) {
+            item.quality++;
+        }
+        if (item.quality >= 50) {
+            return item;
+        }
+
+        return item;
+    }
+
     private Item updateQualitySulfuras(Item item) {
         return item;
     }
@@ -84,7 +121,6 @@ class GildedRose {
         }
 
         item.quality++;
-
         if (item.quality >= 50) {
             return item;
         }
