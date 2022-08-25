@@ -14,16 +14,35 @@ class GildedRose {
                 case "Aged Brie":
                     item = updateQualityAgedBrie(item);
                     break;
-                case "Sulfuras, Hand of Ragnaros":
-                    item = updateQualitySulfuras(item);
-                    break;
                 case "Backstage passes to a TAFKAL80ETC concert":
                     item = updateQualityBackstagePass(item);
+                    break;
+                case "Sulfuras, Hand of Ragnaros":
+                    item = updateQualitySulfuras(item);
                     break;
                 default:
                     item = updateQualityNormal(item);
             }
         }
+    }
+
+    private Item updateQualityAgedBrie(Item item) {
+        item.sellIn--;
+
+        if (item.quality >= 50) {
+            return item;
+        }
+
+        item.quality++;
+        if (item.quality >= 50) {
+            return item;
+        }
+
+        if (item.sellIn <= 0) {
+            item.quality++;
+        }
+
+        return item;
     }
 
     private Item updateQualityBackstagePass(Item item) {
@@ -60,29 +79,6 @@ class GildedRose {
         return item;
     }
 
-    private Item updateQualitySulfuras(Item item) {
-        return item;
-    }
-
-    private Item updateQualityAgedBrie(Item item) {
-        item.sellIn--;
-
-        if (item.quality >= 50) {
-            return item;
-        }
-
-        item.quality++;
-        if (item.quality >= 50) {
-            return item;
-        }
-
-        if (item.sellIn <= 0) {
-            item.quality++;
-        }
-
-        return item;
-    }
-
     private Item updateQualityNormal(Item item) {
         item.sellIn--;
 
@@ -96,6 +92,10 @@ class GildedRose {
             item.quality--;
         }
 
+        return item;
+    }
+
+    private Item updateQualitySulfuras(Item item) {
         return item;
     }
 }
