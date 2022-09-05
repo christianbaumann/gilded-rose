@@ -1,28 +1,25 @@
 package com.gildedrose;
 
 class GildedRose {
-    Item[] items;
+    Item item;
 
-    public GildedRose(Item[] items) {
-        this.items = items;
+    public GildedRose(Item item) {
+        this.item = item;
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-
-            switch (item.name) {
-                case "Aged Brie":
-                    item = updateQualityAgedBrie(item);
-                    break;
-                case "Backstage passes to a TAFKAL80ETC concert":
-                    item = updateQualityBackstagePass(item);
-                    break;
-                case "Sulfuras, Hand of Ragnaros":
-                    item = updateQualitySulfuras(item);
-                    break;
-                default:
-                    item = updateQualityNormal(item);
-            }
+        switch (item.name) {
+            case "Aged Brie":
+                item = updateQualityAgedBrie(item);
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                item = updateQualityBackstagePass(item);
+                break;
+            case "Sulfuras, Hand of Ragnaros":
+                item = updateQualitySulfuras(item);
+                break;
+            default:
+                item = updateQualityNormal(item);
         }
     }
 
